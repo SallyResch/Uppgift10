@@ -2,6 +2,10 @@ body{
     background-image: url('galaxy.jpg');
     background-size: cover;
     background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 div{
     background-color: rgb(146, 109, 181);
