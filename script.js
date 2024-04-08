@@ -1,3 +1,12 @@
-fetch("https://www.swapi.tech/api/people/?name=chewbacca")
-.then(response => console.log(response))
-.catch(error => console.error());
+async function fetchCharacterName() {
+    try {
+      const baseUrl = 'https://www.swapi.tech/api/people/3';
+      const response = await fetch(baseUrl);
+      const data = await response.json();
+      console.log(data.result.properties.name);
+    } catch (err) {
+      console.error(err);
+    }
+  }
+  
+  fetchCharacterName();
