@@ -3,3 +3,7 @@ body{
     background-size: cover;
     background-repeat: no-repeat;
 }
+div{
+    background-color: rgb(146, 109, 181);
+    padding: 2em;
+}
