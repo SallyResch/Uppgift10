@@ -4,7 +4,7 @@ const inputField = document.querySelector('#inputText');
 const output = document.querySelector('#outputText');
 
 const getStarwars = () =>{
-  console.log('getStarwars function is called'); // Konsollogg för att kontrollera om funktionen körs
+  console.log('getStarwars function is called');
   fetch(baseUrl, {
     method: 'GET',
     headers: {
