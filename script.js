@@ -1,68 +1,44 @@
-let baseUrl = 'https://www.swapi.tech/api/people/${name}';
-const searchButton = document.querySelector('#searchButton');
-const inputField = document.querySelector('#inputText');
-const output = document.querySelector('#outputText');
+document.addEventListener('DOMContentLoaded', function() {
+  const baseUrl = 'https://www.swapi.tech/api/people/';
 
-const getStarwars = () =>{
-  console.log('getStarwars function is called');
-  fetch(baseUrl, {
-    method: 'GET',
-    headers: {
+  const searchButton = document.querySelector('#searchButton');
+  const inputText = document.querySelector('#inputText');
+  const outputText = document.querySelector('#outputText');
+  
+  const getStarwars = () => {
+    const name = inputText.value.trim(); // Hämta värdet från input-fältet och ta bort eventuella extra blanksteg
+    const url = `${baseUrl}?name=${name}`; // Bygg den kompletta URL:en med namnet
+  
+    console.log('getStarwars function is called with name:', name);
+  
+    fetch(url, {
+      method: 'GET',
+      headers: {
         'Accept': 'application/json'
-    }
-  })
-  .then(res =>{
-    if(res.ok)
-      return res.json();
-    throw new Error('Failed to get repos');
-  })
-  .then(result =>{
-    console.log(result);
-  })
-  .catch(error => {
-    console.error('Error:', error);
-  });
-}
-
-searchButton.addEventListener('click', getStarwars);
-
-
-
-/* const btnGit = document.querySelector('#btnGit');
-const gitOutput = document.querySelector('#git-output');
-
-const getGit = () =>{
-    fetch('https://api.github.com/users/Lexicon-net-2024/repos', {
-        method: 'GET',
-        headers: {
-            'Accept': 'application/json'
-        }
+      }
     })
-    .then(res =>{
-        if(res.ok)
-         return res.json();
-        throw new Error('Failed to get repos');
+    .then(res => {
+      if (res.ok)
+        return res.json();
+      throw new Error('Failed to get person');
     })
-    .then(data =>{
-        console.log(data);
-         
-        gitOutput.innerHTML = '';
-
-        data.forEach(repo =>{
-            gitOutput.innerHTML += `
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">${repo.name}</h5>
-                    <p class="card-text">This repo is mainly written in ${repo.language}</p>
-                    <p class="card-text">This repo have been forked ${repo.forks_count} times </p>
-                    <a href="${repo.html_url}" class="card-link">${repo.name}</a>
-                    <a href="${repo.owner.html_url}" class="card-link">Owner</a>
-                </div>
-            </div>
-            `
-        })
+    .then(data => {
+      console.log(data);
+      // Uppdatera output med resultatet
+      const result = data.result[0];
+      outputText.textContent = `
+      Name: ${result.properties.name},
+      Gender: ${result.properties.gender},
+      Birth Year: ${result.properties.birth_year},
+      Eye Color: ${result.properties.eye_color},
+      Hair Color: ${result.properties.hair_color},
+      Skin Color: ${result.properties.skin_color}`
     })
-    .catch(err => console.log('Error: '+ err));
-}
-
-btnGit.addEventListener('click', getGit);  */
+    .catch(error => {
+      console.error('Error:', error);
+    });
+  }
+  
+  searchButton.addEventListener('click', getStarwars);
+  
+});
