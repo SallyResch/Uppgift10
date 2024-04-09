@@ -28,11 +28,10 @@ document.addEventListener('DOMContentLoaded', function() {
       const result = data.result[0];
       outputText.textContent = `
       Name: ${result.properties.name},
+      Mass: ${result.properties.mass},
       Gender: ${result.properties.gender},
-      Birth Year: ${result.properties.birth_year},
-      Eye Color: ${result.properties.eye_color},
-      Hair Color: ${result.properties.hair_color},
-      Skin Color: ${result.properties.skin_color}`
+      Height: ${result.properties.height},
+      Hair Color: ${result.properties.hair_color}`
     })
     .catch(error => {
       console.error('Error:', error);
